@@ -31,6 +31,11 @@ function fiveRandom() {
 // reset lottery game
 function newGame() {
   $("#input").html("");
+  $("#playerInput")
+    .children()
+    .each(function (i, e) {
+      $(e).val("");
+    });
   $("#aBtn").text(function () {
     $(this).text("Show numbers");
   });
