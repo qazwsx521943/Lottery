@@ -4,8 +4,11 @@ var popoverTriggerList = [].slice.call(
 var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
   return new bootstrap.Popover(popoverTriggerEl);
 });
-// ⇧ Bootstrap plugin
+// ⇧ Ignore Bootstrap plugin
+
 let randomSel = [];
+
+// Function
 
 // random number function
 let getRandom = () => {
@@ -22,16 +25,54 @@ function fiveRandom() {
   for (let i = 0; i < 5; i++) {
     getRandom();
   }
+  randomSel.sort((a, b) => a - b);
+}
+
+function newGame() {
+  $("#input").html("");
+  $("#aBtn").next().hide();
+  randomSel = [];
+  $("#sub").attr("disabled", false);
+  $("#sub").css("opacity", "");
 }
 
 function showNums() {
+  let correct = [];
+  let acc = 0;
   let numArray = [];
   let nums = document.querySelectorAll("input");
-  nums.forEach((x) => numArray.push(x.value));
+  nums.forEach((x) => numArray.push(parseInt(x.value)));
+  numArray.sort((a, b) => a - b);
   fiveRandom();
+
+  for (let i in numArray) {
+    if (randomSel.includes(numArray[i])) {
+      acc++;
+      correct.push(numArray[i]);
+    }
+  }
+
+  $("#input").html(`您猜對的數字有：${correct}<br/>
+  總計${acc}個`);
+  $(this).attr("disabled", true);
+  $(this).css({
+    opacity: 0.6,
+  });
 }
 
+// jQuery Eventhandlers
 $("#sub").click(showNums);
-$("#reset").click(function () {
-  randomSel = [];
+$("#aBtn").click(function () {
+  if (
+    $(this).text(function (i, text) {
+      return text === "Show numbers"
+        ? "Hide numbers"
+        : text === "Hide numbers"
+        ? "Show numbers"
+        : false;
+    })
+  )
+    $(this).next().text(`莊家的數字：${randomSel}`);
+  $(this).next().toggle();
 });
+$("#reset").click(newGame);

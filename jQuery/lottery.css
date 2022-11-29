@@ -1,4 +1,31 @@
+* {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
 #reset {
   top: 50%;
   right: 10%;
+}
+
+#aBtn {
+  margin-bottom: 20px;
+  background-color: aqua;
+}
+
+#answer {
+  background-color: rgba(255, 255, 255, 0.7);
+  width: 100px;
+  color: rgb(30, 149, 88);
+  display: none;
+  border: 0.5px solid rgb(122, 122, 122);
+}
+
+#input {
+  color: rgb(63, 45, 255);
+  box-shadow: 1px 1px 5px black;
+  width: 500px;
+}
+
+#sub {
+  border-radius: 10px;
+  padding: 5px;
 }

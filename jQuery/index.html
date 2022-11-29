@@ -16,7 +16,7 @@
   </head>
   <body>
     <header class="position-relative">
-      <h1 class="text-center">Car Lottery</h1>
+      <h1 class="text-center">Lottery</h1>
       <button id="reset" class="btn-dark position-absolute">New Game</button>
     </header>
     <main>
@@ -28,20 +28,13 @@
         <input class="mx-3" type="number" />
         <input class="mx-3" type="number" />
       </section>
-      <button id="sub" class="mx-auto btn-primary d-block">Submit</button>
+      <button id="sub" class="mx-auto btn-danger d-block">Submit</button>
+      <div class="text-center mx-auto my-3" id="input"></div>
       <section class="mt-5">
         <div></div>
-        <div class="d-flex justify-content-center">
-          <a
-            tabindex="0"
-            class="btn btn-lg btn-danger"
-            role="button"
-            data-bs-toggle="popover"
-            data-bs-trigger="focus"
-            title="Dismissible popover"
-            data-bs-content="And here's some amazing content. It's very engaging. Right?"
-            >See all numbers</a
-          >
+        <div class="d-flex flex-column align-items-center">
+          <button id="aBtn">Show numbers</button>
+          <div id="answer"></div>
         </div>
       </section>
     </main>
