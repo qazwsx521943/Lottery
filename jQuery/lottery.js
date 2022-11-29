@@ -10,7 +10,7 @@ let randomSel = [];
 
 // Function
 
-// random number function
+// Create One random number
 let getRandom = () => {
   let i = Math.floor(Math.random() * 49 + 1);
   if (randomSel.every((num) => num != i)) {
@@ -28,36 +28,36 @@ function fiveRandom() {
   randomSel.sort((a, b) => a - b);
 }
 
+// reset lottery game
 function newGame() {
   $("#input").html("");
   $("#aBtn").next().hide();
   randomSel = [];
-  $("#sub").attr("disabled", false);
-  $("#sub").css("opacity", "");
+  // clear submit button restriction
+  $("#sub").attr("disabled", false).css("opacity", "");
 }
 
+// show results on HTML
 function showNums() {
-  let correct = [];
-  let acc = 0;
-  let numArray = [];
+  let correct = []; // collect matched numbers into an array
+  let acc = 0; // count matched numbers
+  let numArray = []; // collect player's numbers into an array
   let nums = document.querySelectorAll("input");
   nums.forEach((x) => numArray.push(parseInt(x.value)));
   numArray.sort((a, b) => a - b);
   fiveRandom();
 
+  // get matched numbers
   for (let i in numArray) {
     if (randomSel.includes(numArray[i])) {
       acc++;
       correct.push(numArray[i]);
     }
   }
-
+  // jQuery change display
   $("#input").html(`您猜對的數字有：${correct}<br/>
   總計${acc}個`);
-  $(this).attr("disabled", true);
-  $(this).css({
-    opacity: 0.6,
-  });
+  $(this).attr("disabled", true).css("opacity", "0.6");
 }
 
 // jQuery Eventhandlers
