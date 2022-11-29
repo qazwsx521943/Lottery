@@ -16,11 +16,13 @@
   </head>
   <body>
     <header class="position-relative">
-      <h1 class="text-center">Lottery</h1>
-      <button id="reset" class="btn-dark position-absolute">New Game</button>
+      <h1 id="heading" class="text-center">Lottery</h1>
+      <button id="reset" class="btn-dark position-absolute">
+        Next Lottery
+      </button>
     </header>
     <main>
-      <h2>Select 5 numbers (No repeat)</h2>
+      <h2 class="text-center">Select 5 numbers (No repeat)</h2>
       <section class="d-flex justify-content-center my-5">
         <input class="mx-3" type="number" />
         <input class="mx-3" type="number" />
@@ -28,13 +30,28 @@
         <input class="mx-3" type="number" />
         <input class="mx-3" type="number" />
       </section>
-      <button id="sub" class="mx-auto btn-danger d-block">Submit</button>
-      <div class="text-center mx-auto my-3" id="input"></div>
+      <button id="sub" class="mx-auto btn-danger d-block">
+        Lottery Results
+      </button>
+      <div
+        class="text-center mx-auto my-3 d-flex justify-content-evenly p-3"
+        id="input"
+      ></div>
       <section class="mt-5">
         <div></div>
         <div class="d-flex flex-column align-items-center">
           <button id="aBtn">Show numbers</button>
-          <div id="answer"></div>
+          <!-- <div id="answer"></div> -->
+          <div
+            id="results"
+            class="text-center mx-auto my-3 d-flex justify-content-evenly p-3"
+          >
+            <div class="result"><div class="inner order0"></div></div>
+            <div class="result"><div class="inner order1"></div></div>
+            <div class="result"><div class="inner order2"></div></div>
+            <div class="result"><div class="inner order3"></div></div>
+            <div class="result"><div class="inner order4"></div></div>
+          </div>
         </div>
       </section>
     </main>

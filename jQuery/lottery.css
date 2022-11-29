@@ -1,6 +1,16 @@
 * {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
+
+#heading {
+  background: repeating-linear-gradient(
+    rgb(255, 0, 0) 10px,
+    orangered,
+    rgb(255, 247, 90)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 #reset {
   top: 50%;
   right: 10%;
@@ -9,14 +19,6 @@
 #aBtn {
   margin-bottom: 20px;
   background-color: aqua;
-}
-
-#answer {
-  background-color: rgba(255, 255, 255, 0.7);
-  width: 100px;
-  color: rgb(30, 149, 88);
-  display: none;
-  border: 0.5px solid rgb(122, 122, 122);
 }
 
 #input {
@@ -28,4 +30,27 @@
 #sub {
   border-radius: 10px;
   padding: 5px;
+}
+
+.result {
+  line-height: 60px;
+  width: 60px;
+  height: 60px;
+  background-color: rgb(237, 69, 69);
+  border-radius: 100%;
+  margin: 4px;
+  position: relative;
+  box-shadow: 1px 1px 5px black;
+  display: none;
+}
+.inner {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  line-height: 40px;
+  transform: translate(-60%, -60%);
 }

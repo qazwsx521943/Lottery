@@ -32,19 +32,15 @@ function fiveRandom() {
 function newGame() {
   $("#input").html("");
   $("#aBtn").text(function () {
-    if (
-      $(this).text(function (i, text) {
-        return text === "Show numbers"
-          ? "Hide numbers"
-          : text === "Hide numbers"
-          ? "Show numbers"
-          : false;
-      })
-    )
-      $(this).next().text(`莊家的數字：${randomSel}`);
-    $(this).next().toggle();
+    $(this).text("Show numbers");
   });
   randomSel = [];
+  $("#results")
+    .children()
+    .each(function (index, element) {
+      $(element).children().text("");
+    })
+    .hide();
   // clear submit button restriction
   $("#sub").attr("disabled", false).css("opacity", "");
 }
@@ -67,8 +63,8 @@ function showNums() {
     }
   }
   // jQuery change display
-  $("#input").html(`您猜對的數字有：${correct}<br/>
-  總計${acc}個`);
+  $("#input").html(`Correct Numbers：${correct}<br/>
+  TOTAL ${acc}`);
   $(this).attr("disabled", true).css("opacity", "0.6");
 }
 
@@ -84,7 +80,12 @@ $("#aBtn").click(function () {
         : false;
     })
   )
-    $(this).next().text(`莊家的數字：${randomSel}`);
-  $(this).next().toggle();
+    $("#results")
+      .children()
+      .each(function (index, element) {
+        $(element).children().text(randomSel[index]);
+      });
+  $("#results").children().toggle();
+  // $(this).next().toggle();
 });
 $("#reset").click(newGame);
