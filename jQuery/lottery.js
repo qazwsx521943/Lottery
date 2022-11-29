@@ -31,7 +31,19 @@ function fiveRandom() {
 // reset lottery game
 function newGame() {
   $("#input").html("");
-  $("#aBtn").next().hide();
+  $("#aBtn").text(function () {
+    if (
+      $(this).text(function (i, text) {
+        return text === "Show numbers"
+          ? "Hide numbers"
+          : text === "Hide numbers"
+          ? "Show numbers"
+          : false;
+      })
+    )
+      $(this).next().text(`莊家的數字：${randomSel}`);
+    $(this).next().toggle();
+  });
   randomSel = [];
   // clear submit button restriction
   $("#sub").attr("disabled", false).css("opacity", "");
