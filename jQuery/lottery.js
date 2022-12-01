@@ -53,11 +53,14 @@ function newGame() {
 // show results on HTML
 function showNums() {
   let correct = []; // collect matched numbers into an array
+  let error = [];
   let acc = 0; // count matched numbers
   let numArray = []; // collect player's numbers into an array
-  let nums = document.querySelectorAll("input");
-  nums.forEach((x) => numArray.push(parseInt(x.value)));
+  let nums = document.querySelectorAll(".clicked");
+  nums.forEach((x) => numArray.push(parseInt(x.textContent)));
   numArray.sort((a, b) => a - b);
+  console.log(numArray);
+
   fiveRandom();
 
   // get matched numbers
@@ -65,13 +68,30 @@ function showNums() {
     if (randomSel.includes(numArray[i])) {
       acc++;
       correct.push(numArray[i]);
+    } else {
+      error.push(numArray[i]);
     }
   }
   // jQuery change display
+
+  // Bingo number
+  correct.forEach((x) =>
+    $("td")
+      .eq(x - 1)
+      .removeClass("clicked")
+      .addClass("congrat")
+  );
+  // lost numbers
+
   $("#input").html(`Correct Numbers：${correct}<br/>
   TOTAL ${acc}`);
   $(this).attr("disabled", true).css("opacity", "0.6");
 }
+
+// select and change color
+$("td").each(function (i, e) {
+  $(e).click(() => $(this).toggleClass("clicked"));
+});
 
 // jQuery Eventhandlers
 $("#sub").click(showNums);
@@ -91,6 +111,7 @@ $("#aBtn").click(function () {
         $(element).children().text(randomSel[index]);
       });
   $("#results").children().toggle();
+
   // $(this).next().toggle();
 });
 $("#reset").click(newGame);

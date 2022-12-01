@@ -54,3 +54,34 @@
   line-height: 40px;
   transform: translate(-60%, -60%);
 }
+
+table {
+  border-collapse: separate;
+  width: 500px;
+  height: 500px;
+  border-spacing: 10px;
+  border-radius: 20px;
+  background-color: rgb(246, 232, 139);
+}
+
+table,
+tr,
+td {
+  border: 0.2px solid red;
+}
+
+td {
+  border-radius: 100%;
+  background-color: white;
+}
+
+td:hover {
+  background-color: rgb(240, 93, 93);
+}
+.clicked {
+  background-color: orangered;
+}
+
+.congrat {
+  background-color: rgb(0, 102, 255);
+}
