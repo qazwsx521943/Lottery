@@ -3,21 +3,29 @@ let randomSel = [];
 // Function
 
 // Create One random number
-let getRandom = () => {
+// let getRandom = () => {
+//   let i = Math.floor(Math.random() * 49 + 1);
+//   if (randomSel.every((num) => num != i)) {
+//     randomSel.push(i);
+//   } else {
+//     getRandom();
+//   }
+// };
+let getRandom = (arr) => {
   let i = Math.floor(Math.random() * 49 + 1);
-  if (randomSel.every((num) => num != i)) {
-    randomSel.push(i);
+  if (arr.every((num) => num != i)) {
+    arr.push(i);
   } else {
-    getRandom();
+    getRandom(arr);
   }
 };
 
 // Create five random numbers
-function fiveRandom() {
+function fiveRandom(arr) {
   for (let i = 0; i < 5; i++) {
-    getRandom();
+    getRandom(arr);
   }
-  randomSel.sort((a, b) => a - b);
+  arr.sort((a, b) => a - b);
 }
 
 // reset lottery game
@@ -53,7 +61,7 @@ function showNums() {
   numArray.sort((a, b) => a - b);
   console.log(numArray);
 
-  fiveRandom();
+  fiveRandom(randomSel);
 
   // get matched numbers
   for (let i in numArray) {
@@ -80,6 +88,21 @@ function showNums() {
   $(this).attr("disabled", true).css("opacity", "0.6");
 }
 
+// Auto Pick 5 numbers
+function autoPick() {
+  let auto = [];
+  fiveRandom(auto);
+  $("td").each(function (i, e) {
+    $("td").eq(auto[i]).addClass("clicked");
+  });
+}
+
+// Clear all picked number
+function clearAll() {
+  $("td").each(function (i, e) {
+    $(e).removeClass("clicked");
+  });
+}
 // conditions status change⇩
 // select and change color
 
@@ -107,4 +130,6 @@ $("#aBtn").click(function () {
   $("#results").children().toggle();
 });
 
+$("#autoChoose").click(autoPick);
+$("#clearAll").click(clearAll);
 $("#reset").click(newGame);
