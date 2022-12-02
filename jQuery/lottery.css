@@ -64,12 +64,6 @@ table {
   background-color: rgb(246, 232, 139);
 }
 
-table,
-tr,
-td {
-  /* border: 0.2px solid red; */
-}
-
 td {
   border-radius: 100%;
   background-color: white;

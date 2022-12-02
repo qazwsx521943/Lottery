@@ -3,14 +3,6 @@ let randomSel = [];
 // Function
 
 // Create One random number
-// let getRandom = () => {
-//   let i = Math.floor(Math.random() * 49 + 1);
-//   if (randomSel.every((num) => num != i)) {
-//     randomSel.push(i);
-//   } else {
-//     getRandom();
-//   }
-// };
 let getRandom = (arr) => {
   let i = Math.floor(Math.random() * 49 + 1);
   if (arr.every((num) => num != i)) {
@@ -21,8 +13,8 @@ let getRandom = (arr) => {
 };
 
 // Create five random numbers
-function fiveRandom(arr) {
-  for (let i = 0; i < 5; i++) {
+function selectRandom(arr, num) {
+  for (let i = 0; i < num; i++) {
     getRandom(arr);
   }
   arr.sort((a, b) => a - b);
@@ -47,6 +39,8 @@ function newGame() {
   $("td").each(function (i, e) {
     $(e).removeClass("clicked").removeClass("congrat");
   });
+  $("#clearAll").attr("disabled", false).css("opacity", "1");
+  $("#autoChoose").attr("disabled", false).css("opacity", "1");
 }
 
 // show results on HTML
@@ -61,7 +55,7 @@ function showNums() {
   numArray.sort((a, b) => a - b);
   console.log(numArray);
 
-  fiveRandom(randomSel);
+  selectRandom(randomSel, 5);
 
   // get matched numbers
   for (let i in numArray) {
@@ -86,12 +80,15 @@ function showNums() {
   $("#input").html(`Correct Numbers：${correct}<br/>
   TOTAL ${acc}`);
   $(this).attr("disabled", true).css("opacity", "0.6");
+  $("#clearAll").attr("disabled", true).css("opacity", "0.6");
+  $("#autoChoose").attr("disabled", true).css("opacity", "0.6");
 }
 
 // Auto Pick 5 numbers
 function autoPick() {
+  let nums = document.querySelectorAll(".clicked");
   let auto = [];
-  fiveRandom(auto);
+  selectRandom(auto, 5 - nums.length);
   $("td").each(function (i, e) {
     $("td").eq(auto[i]).addClass("clicked");
   });
