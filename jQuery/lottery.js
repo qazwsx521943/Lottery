@@ -1,11 +1,3 @@
-var popoverTriggerList = [].slice.call(
-  document.querySelectorAll('[data-bs-toggle="popover"]')
-);
-var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-  return new bootstrap.Popover(popoverTriggerEl);
-});
-// ⇧ Ignore Bootstrap plugin
-
 let randomSel = [];
 
 // Function
@@ -31,11 +23,6 @@ function fiveRandom() {
 // reset lottery game
 function newGame() {
   $("#input").html("");
-  $("#playerInput")
-    .children()
-    .each(function (i, e) {
-      $(e).val("");
-    });
   $("#aBtn").text(function () {
     $(this).text("Show numbers");
   });
@@ -48,6 +35,10 @@ function newGame() {
     .hide();
   // clear submit button restriction
   $("#sub").attr("disabled", false).css("opacity", "");
+  // clean lottery clicked & answers
+  $("td").each(function (i, e) {
+    $(e).removeClass("clicked").removeClass("congrat");
+  });
 }
 
 // show results on HTML
@@ -57,6 +48,7 @@ function showNums() {
   let acc = 0; // count matched numbers
   let numArray = []; // collect player's numbers into an array
   let nums = document.querySelectorAll(".clicked");
+  if (nums.length > 5) return alert("Can't Pick Over 5 numbers!");
   nums.forEach((x) => numArray.push(parseInt(x.textContent)));
   numArray.sort((a, b) => a - b);
   console.log(numArray);
@@ -88,7 +80,9 @@ function showNums() {
   $(this).attr("disabled", true).css("opacity", "0.6");
 }
 
+// conditions status change⇩
 // select and change color
+
 $("td").each(function (i, e) {
   $(e).click(() => $(this).toggleClass("clicked"));
 });
@@ -111,7 +105,6 @@ $("#aBtn").click(function () {
         $(element).children().text(randomSel[index]);
       });
   $("#results").children().toggle();
-
-  // $(this).next().toggle();
 });
+
 $("#reset").click(newGame);
